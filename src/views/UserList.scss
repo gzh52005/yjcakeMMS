@@ -1,0 +1,25 @@
+
+.main{
+    width: 100%;
+    overflow-x: auto;
+    .app-main{
+        width: 1300px;
+        .app-content{
+            // width: 1300px;
+        }
+        .ant-table-wrapper{
+            // width: 1300px;
+            .ant-input{
+                padding: 0px;
+            }
+        }
+    }
+}
+.example {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.05);
+    padding-top: 200px;
+    width: 100%;
+    height:100%;
+  }
+

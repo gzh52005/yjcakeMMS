@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react';
+import { withRouter } from 'react-router-dom'
+//* 导入一级模块
+import Head from './comeponents/Head'
+import Nav from './comeponents/Nav'
+import Main from './comeponents/Main'
+import './App.scss';
+let App = function(props) {
+  // console.log('App',props);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <React.Fragment>
+    <div className="header">
+    <Head/>
     </div>
+    <div className="container">
+      <div className="nav">
+      <Nav/>
+      </div>
+    <div className="main">
+    <Main/>
+    </div>
+    </div>
+  </React.Fragment>
   );
 }
+App=withRouter(App);
 
 export default App;

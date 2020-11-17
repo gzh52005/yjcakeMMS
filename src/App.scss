@@ -1,0 +1,25 @@
+#app{
+  display: flex;
+  flex-direction: column;
+  //* 头部
+  .header{
+    height: 80px;
+    background: yellowgreen;
+  }
+  //* 主体（导航加内容）
+  .container{
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+      // 导航
+      .nav{
+        width: 200px;
+      }
+      // 内容
+      .main{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+  }
+}

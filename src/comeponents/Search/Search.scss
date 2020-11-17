@@ -1,0 +1,33 @@
+.app-content{
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    .content-top{
+        height: 45px;
+        box-shadow: 2px 2px 5px  #000;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 900;
+        padding-left: 20px;
+        margin-bottom: 15px;
+        &::before{
+              content: '|';
+              color: rgb(19, 235, 109);
+              font-size: 16px;
+              line-height: 16px;
+              padding-right: 5px;
+        }
+    }
+    .app-content-container{
+        flex: 1;
+    }
+    .ant-btn{
+        margin-right: 20px;
+    }
+    .ant-select-selection-item{
+        width: 46px;
+    }
+    
+}
