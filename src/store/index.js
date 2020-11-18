@@ -18,8 +18,8 @@ const reducer = (state, action) => {
         case 'login':
             // 存入本地
             newState={name:action.user.name,remember:action.user.remember}
-            let data={...newState,token:action.data.token}
-            if(action.data.token){
+            let data={...newState,...action.data}
+            if(data.remember){
                 localStorage.setItem('currentUser',JSON.stringify(data))
             }else{
                 sessionStorage.setItem('currentUser',JSON.stringify(data))
@@ -31,8 +31,13 @@ const reducer = (state, action) => {
             localStorage.removeItem('currentUser')
             sessionStorage.removeItem('currentUser')
             return {}
-        case 'change_password':
-            newState = {...state,password:action.password}
+        case 'change_headPic':
+            newState = {...state,headPic:action.headPic}
+            if(newState.remember){
+                localStorage.setItem('currentUser',JSON.stringify(newState))
+            }else{
+                sessionStorage.setItem('currentUser',JSON.stringify(newState))
+            }
             return newState;
         case 'change_role':
             newState = {...state,role:action.role}

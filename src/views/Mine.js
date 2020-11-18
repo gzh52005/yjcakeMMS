@@ -1,27 +1,12 @@
-import React,{useContext,useState,useRef,useEffect} from 'react';
+import React,{useContext,useState,useRef} from 'react';
 import {context} from '@/store'
-import {getUserList} from '../api/userApi'
 import { withRouter } from 'react-router-dom'
 import { Skeleton,Button,message } from 'antd';
 
 let Mine=(props)=>{
-const {state:userData} = useContext(context)
+const {state:userData,dispatch} = useContext(context)
 const [file, setfile] = useState('');
-const [data,setData] =useState('');
-const [isLoading,setisLoading]=useState(false);
-let obj={
-  name:userData.name
-}
-//* 发送请求,获取用户信息
-useEffect(async () => {
-  const p=await getUserList({
-    pageSize:1,
-    page:1,
-    query:JSON.stringify(obj)
-  })
-  //* 设置在state中
-  setData(p.data[0])
-},[isLoading])
+
 // 判断是否存在token
 const islogin=!!userData.token
 
@@ -54,7 +39,6 @@ const onSetfile=username=>{
   //添加图片
   formdata.append('name', username)
   formdata.append('avatar', file)
-  setisLoading(true)
   fetch(`http://47.96.19.159:3006/user/headpic`,{
     method:"POST",
     body:formdata
@@ -62,7 +46,8 @@ const onSetfile=username=>{
   let p =await res.json()
           if (p.code==2000) {
             message.success('上传成功')
-            setisLoading(false)
+            //* 改变共享状态中的头像
+            dispatch({type:"change_headPic",headPic:imgRef.current.src})
           }else if(p.code==3000){
             message.error('上传失败')
           }
@@ -77,7 +62,7 @@ const onSetfile=username=>{
            
             <div style={{display:"flex",alignItems:"center"}}>
             <label htmlFor="file" style={{marginBottom:5,position:"relative",display:"inline-block",width:88,height:88 ,borderRadius:50+"%",backgroundColor:'#ccc',overflow:"hidden"}} >
-            <span style={{marginTop:20,display:"inline-block"}}>点击此处添加头像！</span> <img className="img" ref={imgRef} src={data.headPic} style={{position:"absolute",width:100+"%",height:100+"%",fontSize:"20px",left:0,top:0}}  />
+            <span style={{marginTop:20,display:"inline-block"}}>点击此处添加头像！</span> <img className="img" ref={imgRef} src={userData.headPic} style={{position:"absolute",width:100+"%",height:100+"%",fontSize:"20px",left:0,top:0}}  />
               </label>
               <div style={{marginLeft:100}}>
                  <h3>欢迎您<mark>{userData.name}</mark>！</h3>

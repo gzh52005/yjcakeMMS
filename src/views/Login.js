@@ -35,6 +35,7 @@ const {state:goodslist,dispatch} = useContext(context)
     // console.log('data=', data);
     //* 如果校验成功
     if (data.code === 2000) {
+     
     //!!   明天用hook将登录状态存在全局context中？？就是返回新的state放在最大的组件上，所有子组件都能通过props获取
     add2cart(data,values)
     //   props.login(data.data,values.remember)
